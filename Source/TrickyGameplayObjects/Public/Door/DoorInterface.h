@@ -58,7 +58,7 @@ public:
 	 * @param bTransitImmediately Determines if the door should transit to the open state immediately or not.
 	 * @return True if the door was successfully opened or started a transition to opened state.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Door")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool OpenDoor(const bool bTransitImmediately);
 
 	/**
@@ -67,7 +67,7 @@ public:
 	 * @param bTransitImmediately Determines if the door should transit to the closed state immediately or not.
 	 * @return True if the door was successfully closed or started transition to the closed state.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Door")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool CloseDoor(const bool bTransitImmediately);
 
 	/**
@@ -76,7 +76,7 @@ public:
 	 * @param bTransitImmediately Determines if the door should transit to the locked state immediately or not.
 	 * @return True if the door was successfully locked or started a transition to the locked state.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Door")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool LockDoor(const bool bTransitImmediately);
 
 	/**
@@ -85,7 +85,7 @@ public:
 	 * @param bTransitImmediately Determines if the door should transit to the unlocked state (usually closed) immediately or not.
 	 * @return True if the door was successfully unlocked or started a transition from the unlocked to closed state.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Door")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool UnlockDoor(const bool bTransitImmediately);
 
 	/**
@@ -94,7 +94,7 @@ public:
 	 * @param bTransitImmediately Determines if the door should transit to the disabled state immediately or not.
 	 * @return True if the door was successfully disabled or started a transition to the disabled state.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Door")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool DisableDoor(const bool bTransitImmediately);
 
 	/**
@@ -102,6 +102,6 @@ public:
 	 * @param bTransitImmediately Determines if the door should transit to the enabled (usually the last before disabling) state immediately or not.
 	 * @return  True if the door was successfully enabled or started a transition from the enabled to last state before disabling.
 	 */
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Door")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool EnableDoor(const bool bTransitImmediately);
 };

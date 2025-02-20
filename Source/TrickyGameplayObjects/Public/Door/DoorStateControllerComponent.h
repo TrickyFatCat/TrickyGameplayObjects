@@ -29,16 +29,16 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnDoorTransitionReversedDynamicSignature OnDoorTransitionReversed;
 
-	UFUNCTION(BlueprintGetter)
+	UFUNCTION(BlueprintGetter, Category=DoorState)
 	FORCEINLINE EDoorState GetCurrentState() const { return CurrentState; }
 
-	UFUNCTION(BlueprintGetter)
+	UFUNCTION(BlueprintGetter, Category=DoorState)
 	FORCEINLINE EDoorState GetTargetState() const { return TargetState; }
 
-	UFUNCTION(BlueprintGetter)
+	UFUNCTION(BlueprintGetter, Category=DoorState)
 	FORCEINLINE EDoorState GetInitialState() const { return InitialState; }
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category=DoorState)
 	void SetInitialState(const EDoorState NewState);
 
 	bool OpenDoor_Implementation(const bool bTransitImmediately);
@@ -53,10 +53,10 @@ public:
 
 	bool EnableDoor_Implementation(const bool bTransitImmediately);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category=DoorState)
 	bool FinishStateTransition();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category=DoorState)
 	bool ReverseTransition();
 
 private:
