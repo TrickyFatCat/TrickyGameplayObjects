@@ -1,19 +1,19 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.0",
+	"VersionName": "3.55.0",
 	"FriendlyName": "TrickyGameplayObjects",
 	"Description": "",
-	"Category": "Other",
+	"Category": "TrickyPrototyping",
 	"CreatedBy": "Artyom \"Tricky_Fat_Cat\" Volkov",
 	"CreatedByURL": "",
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"CanContainContent": true,
+	"CanContainContent": false,
 	"IsBetaVersion": true,
 	"IsExperimentalVersion": false,
-	"Installed": false,
+	"Installed": true,
 	"Modules": [
 		{
 			"Name": "TrickyGameplayObjects",
