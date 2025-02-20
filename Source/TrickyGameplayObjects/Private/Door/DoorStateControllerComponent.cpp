@@ -2,6 +2,7 @@
 
 
 #include "Door/DoorStateControllerComponent.h"
+#include "GameFramework/Actor.h"
 
 DEFINE_LOG_CATEGORY(LogDoor);
 
