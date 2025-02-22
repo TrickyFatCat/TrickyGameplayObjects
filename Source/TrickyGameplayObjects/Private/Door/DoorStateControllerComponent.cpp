@@ -106,6 +106,17 @@ bool UDoorStateControllerComponent::EnableDoor_Implementation(const bool bTransi
 	return ChangeCurrentState(LastState, bTransitImmediately);
 }
 
+bool UDoorStateControllerComponent::EnableDoorForced_Implementation(const EDoorState NewState,
+                                                                    const bool bTransitImmediately)
+{
+	if (CurrentState != EDoorState::Disabled)
+	{
+		return false;
+	}
+
+	return ChangeCurrentState(NewState, bTransitImmediately);
+}
+
 bool UDoorStateControllerComponent::FinishStateTransition()
 {
 	if (CurrentState != EDoorState::Transition)

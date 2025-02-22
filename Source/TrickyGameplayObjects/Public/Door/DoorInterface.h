@@ -103,9 +103,20 @@ public:
 
 	/**
 	 * Attempts to enable the door.
+	 * 
 	 * @param bTransitImmediately Determines if the door should transit to the enabled (usually the last before disabling) state immediately or not.
 	 * @return  True if the door was successfully enabled or started a transition from the enabled to last state before disabling.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool EnableDoor(const bool bTransitImmediately);
+
+	/**
+	 * Attempts to enable the door to a specific state. 
+	 *
+	 * @param NewState The desired state to force the door into.
+	 * @param bTransitImmediately Determines if the door should transit to NewState immediately or not.
+	 * @return True if the door successfully changed the state to NewState or started a transition to NewState.
+	 */
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category=Door)
+	bool EnableDoorForced(const EDoorState NewState, const bool bTransitImmediately);
 };

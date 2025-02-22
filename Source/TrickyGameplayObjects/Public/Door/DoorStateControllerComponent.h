@@ -71,6 +71,8 @@ public:
 
 	bool EnableDoor_Implementation(const bool bTransitImmediately);
 
+	bool EnableDoorForced_Implementation(const EDoorState NewState, const bool bTransitImmediately);
+
 	/**
 	 * Completes the current door state transition if CurrentState is Transition.
 	 * Automatically sets CurrentState to TargetState
