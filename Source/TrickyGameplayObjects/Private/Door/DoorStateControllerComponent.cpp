@@ -178,15 +178,14 @@ bool UDoorStateControllerComponent::ChangeCurrentState(const EDoorState NewState
 	}
 
 	TargetState = NewState;
+	LastState = CurrentState;
 
 	if (bTransitImmediately)
 	{
-		LastState = CurrentState;
 		CurrentState = TargetState;
 	}
 	else
 	{
-		LastState = CurrentState;
 		CurrentState = EDoorState::Transition;
 
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
