@@ -111,12 +111,13 @@ public:
 	bool EnableDoor(const bool bTransitImmediately);
 
 	/**
-	 * Attempts to enable the door to a specific state. 
+	 * Attempts to force the door to enter specific state.
+	 * @warning The Door can't be forced to Transition state.
 	 *
 	 * @param NewState The desired state to force the door into.
 	 * @param bTransitImmediately Determines if the door should transit to NewState immediately or not.
-	 * @return True if the door successfully changed the state to NewState or started a transition to NewState.
+	 * @return True if the door successfully changed the state or started a transition to NewState.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category=Door)
-	bool EnableDoorForced(const EDoorState NewState, const bool bTransitImmediately);
+	bool ForceState(const EDoorState NewState, const bool bTransitImmediately);
 };
