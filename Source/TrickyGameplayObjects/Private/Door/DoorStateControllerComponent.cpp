@@ -144,7 +144,7 @@ bool UDoorStateControllerComponent::ReverseTransition()
 	GetStateName(TargetStateName, TargetState);
 	FString LastStateName = "NONE";
 	GetStateName(LastStateName, LastState);
-	static FString LogMessage = FString::Printf(
+	const FString LogMessage = FString::Printf(
 		TEXT("TargetState reversed from %s to %s"), *LastStateName, *TargetStateName);
 	PrintLog(LogMessage);
 #endif
@@ -177,7 +177,7 @@ bool UDoorStateControllerComponent::ChangeCurrentState(const EDoorState NewState
 		GetStateName(TargetStateName, TargetState);
 		FString LastStateName = "NONE";
 		GetStateName(LastStateName, LastState);
-		static FString LogMessage = FString::Printf(
+		const FString LogMessage = FString::Printf(
 			TEXT("Start state transition from %s to %s"), *LastStateName, *TargetStateName);
 		PrintLog(LogMessage);
 #endif
@@ -187,8 +187,8 @@ bool UDoorStateControllerComponent::ChangeCurrentState(const EDoorState NewState
 
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
 	FString StateName = "NONE";
-	GetStateName(StateName, NewState);
-	static FString LogMessage = FString::Printf(TEXT("State changed to %s"), *StateName);
+	GetStateName(StateName, CurrentState);
+	const FString LogMessage = FString::Printf(TEXT("State changed to %s"), *StateName);
 	PrintLog(LogMessage);
 #endif
 
