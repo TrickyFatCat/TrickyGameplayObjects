@@ -55,8 +55,11 @@ public:
 
 	UFUNCTION(BlueprintGetter, Category=DoorState)
 	FORCEINLINE EDoorState GetInitialState() const { return InitialState; }
+
+	UFUNCTION(BlueprintGetter, Category=DoorState)
+	FORCEINLINE EDoorState GetLastState() const { return LastState; }
 	
-	UFUNCTION(BlueprintCallable, Category=DoorState)
+	UFUNCTION(BlueprintSetter, Category=DoorState)
 	void SetInitialState(const EDoorState NewState);
 
 	bool OpenDoor_Implementation(const bool bTransitImmediately);
@@ -116,7 +119,7 @@ private:
 	/**
 	 * Holds the previous state of the door before the last state transition.
 	 */
-	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetTargetState, Category=DoorState)
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetLastState, Category=DoorState)
 	EDoorState LastState = EDoorState::Closed;
 
 	/**
