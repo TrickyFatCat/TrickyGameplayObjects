@@ -36,7 +36,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDoorStateTransitionFinishedDynam
                                              UDoorStateControllerComponent*, Component,
                                              EDoorState, NewState);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDoorTransitionReversedDynamicSignature,
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDoorStateTransitionReversedDynamicSignature,
                                              UDoorStateControllerComponent*, Component,
                                              EDoorState, NewTargetState);
 

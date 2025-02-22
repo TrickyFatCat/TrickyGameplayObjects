@@ -45,7 +45,7 @@ public:
 	 * Triggered when TargetState was reversed (swapped) with LastState.
 	 */
 	UPROPERTY(BlueprintAssignable)
-	FOnDoorTransitionReversedDynamicSignature OnDoorTransitionReversed;
+	FOnDoorStateTransitionReversedDynamicSignature OnDoorTransitionReversed;
 
 	UFUNCTION(BlueprintGetter, Category=DoorState)
 	FORCEINLINE EDoorState GetCurrentState() const { return CurrentState; }
