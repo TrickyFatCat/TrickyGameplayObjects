@@ -171,6 +171,12 @@ bool UDoorStateControllerComponent::ChangeCurrentState(const EDoorState NewState
 		return false;
 	}
 
+	if (NewState == EDoorState::Transition)
+	{
+		PrintWarning("Can't change CurrentState to Transition");
+		return false;
+	}
+
 	TargetState = NewState;
 
 	if (bTransitImmediately)
