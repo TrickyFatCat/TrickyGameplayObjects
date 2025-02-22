@@ -27,6 +27,9 @@ public:
 	FOnDoorStateTransitionStartedDynamicSignature OnDoorStateTransitionStarted;
 
 	UPROPERTY(BlueprintAssignable)
+	FOnDoorStateTransitionFinishedDynamicSignature OnDoorStateTransitionFinished;
+
+	UPROPERTY(BlueprintAssignable)
 	FOnDoorTransitionReversedDynamicSignature OnDoorTransitionReversed;
 
 	UFUNCTION(BlueprintGetter, Category=DoorState)
@@ -75,5 +78,12 @@ private:
 	UFUNCTION()
 	bool ChangeCurrentState(EDoorState NewState, const bool bTransitImmediately);
 
-	void PrintWarning(const FString& Message);
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	void PrintWarning(const FString& Message) const;
+
+	void PrintLog(const FString& Message) const;
+
+	static void GetStateName(FString& StateName, const EDoorState State);
+#endif
 };
+

@@ -18,7 +18,9 @@ void UDoorStateControllerComponent::InitializeComponent()
 
 	if (InitialState == EDoorState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
 		PrintWarning("InitialState can't be EDoorState::Transition. Reset it to EDoorState::Closed");
+#endif
 		InitialState = EDoorState::Closed;
 	}
 
@@ -29,7 +31,9 @@ void UDoorStateControllerComponent::SetInitialState(const EDoorState NewState)
 {
 	if (NewState == EDoorState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
 		PrintWarning("InitialState can't be EDoorState::Transition. Didn't change the state.");
+#endif
 		return;
 	}
 
@@ -106,24 +110,45 @@ bool UDoorStateControllerComponent::FinishStateTransition()
 {
 	if (CurrentState != EDoorState::Transition)
 	{
-		UE_LOG(LogDoor, Warning, TEXT("Can't finish transition, because CurrentState isn't EDoorState::Transition"))
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't finish transition, because CurrentState isn't EDoorState::Transition");
+#endif
 		return false;
 	}
 
-	return ChangeCurrentState(TargetState, true);
+	if (!ChangeCurrentState(TargetState, true))
+	{
+		return false;
+	}
+
+	OnDoorStateTransitionFinished.Broadcast(this, TargetState);
+	return true;
 }
 
 bool UDoorStateControllerComponent::ReverseTransition()
 {
 	if (CurrentState == EDoorState::Transition)
 	{
-		UE_LOG(LogDoor, Warning, TEXT("Can't reverse transition, because CurrentState is EDoorState::Transition"))
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't reverse transition, because CurrentState is EDoorState::Transition");
+#endif
 		return false;
 	}
 
 	const EDoorState NewTargetState = LastState;
 	LastState = TargetState;
 	TargetState = NewTargetState;
+
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	FString TargetStateName = "NONE";
+	GetStateName(TargetStateName, TargetState);
+	FString LastStateName = "NONE";
+	GetStateName(LastStateName, LastState);
+	static FString LogMessage = FString::Printf(
+		TEXT("TargetState reversed from %s to %s"), *LastStateName, *TargetStateName);
+	PrintLog(LogMessage);
+#endif
+
 	OnDoorTransitionReversed.Broadcast(this, TargetState);
 	return true;
 }
@@ -146,17 +171,50 @@ bool UDoorStateControllerComponent::ChangeCurrentState(const EDoorState NewState
 	{
 		LastState = CurrentState;
 		CurrentState = EDoorState::Transition;
+
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		FString TargetStateName = "NONE";
+		GetStateName(TargetStateName, TargetState);
+		FString LastStateName = "NONE";
+		GetStateName(LastStateName, LastState);
+		static FString LogMessage = FString::Printf(
+			TEXT("Start state transition from %s to %s"), *LastStateName, *TargetStateName);
+		PrintLog(LogMessage);
+#endif
+
 		OnDoorStateTransitionStarted.Broadcast(this, TargetState);
 	}
+
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	FString StateName = "NONE";
+	GetStateName(StateName, NewState);
+	static FString LogMessage = FString::Printf(TEXT("State changed to %s"), *StateName);
+	PrintLog(LogMessage);
+#endif
 
 	OnDoorStateChanged.Broadcast(this, CurrentState, bTransitImmediately);
 	return true;
 }
 
-void UDoorStateControllerComponent::PrintWarning(const FString& Message)
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+void UDoorStateControllerComponent::PrintWarning(const FString& Message) const
 {
 	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
 	                                              *GetName(),
 	                                              *GetOwner()->GetActorNameOrLabel());
 	UE_LOG(LogDoor, Warning, TEXT("%s%s"), *SourceMessage, *Message);
 }
+
+void UDoorStateControllerComponent::PrintLog(const FString& Message) const
+{
+	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
+	                                              *GetName(),
+	                                              *GetOwner()->GetActorNameOrLabel());
+	UE_LOG(LogDoor, Display, TEXT("%s%s"), *SourceMessage, *Message);
+}
+
+void UDoorStateControllerComponent::GetStateName(FString& StateName, const EDoorState State)
+{
+	StateName = StaticEnum<EDoorState>()->GetNameStringByValue(static_cast<int64>(State));
+}
+#endif
