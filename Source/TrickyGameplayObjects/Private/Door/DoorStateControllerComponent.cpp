@@ -173,7 +173,10 @@ bool UDoorStateControllerComponent::ChangeCurrentState(const EDoorState NewState
 
 	if (NewState == EDoorState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
 		PrintWarning("Can't change CurrentState to Transition");
+#endif
+		
 		return false;
 	}
 
