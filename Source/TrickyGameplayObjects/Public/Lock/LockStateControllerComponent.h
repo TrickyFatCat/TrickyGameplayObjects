@@ -47,9 +47,9 @@ public:
 	UFUNCTION(BlueprintGetter, Category=LockState)
 	FORCEINLINE ELockState GetLastState() const { return LastState; }
 
-	bool Lock_Implementation(AActor* OtherActor, const bool bIgnoreKey, const bool bTransitImmediately);
+	bool Lock_Implementation(AActor* OtherActor, const bool bTransitImmediately);
 
-	bool Unlock_Implementation(AActor* OtherActor,const bool bIgnoreKey, const bool bTransitImmediately);
+	bool Unlock_Implementation(AActor* OtherActor, const bool bTransitImmediately);
 
 	bool Disable_Implementation(const bool bTransitImmediately);
 

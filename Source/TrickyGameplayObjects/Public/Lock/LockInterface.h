@@ -53,10 +53,10 @@ class TRICKYGAMEPLAYOBJECTS_API ILockInterface
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
-	bool Lock(AActor* OtherActor, const bool bIgnoreKey, const bool bTransitImmediately);
+	bool Lock(AActor* OtherActor, const bool bTransitImmediately);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
-	bool Unlock(AActor* OtherActor, const bool bIgnoreKey, const bool bTransitImmediately);
+	bool Unlock(AActor* OtherActor, const bool bTransitImmediately);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
 	bool Disable(const bool bTransitImmediately);

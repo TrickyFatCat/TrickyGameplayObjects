@@ -2,6 +2,7 @@
 
 
 #include "Lock/LockStateControllerComponent.h"
+#include "GameFramework/Actor.h"
 
 
 ULockStateControllerComponent::ULockStateControllerComponent()
@@ -34,7 +35,6 @@ void ULockStateControllerComponent::SetInitialState(const ELockState NewState)
 }
 
 bool ULockStateControllerComponent::Lock_Implementation(AActor* OtherActor,
-                                                        const bool bIgnoreKey,
                                                         const bool bTransitImmediately)
 {
 	if (CurrentState != ELockState::Unlocked)
@@ -42,21 +42,15 @@ bool ULockStateControllerComponent::Lock_Implementation(AActor* OtherActor,
 		return false;
 	}
 
-	if (bIgnoreKey)
-	{
-		return ChangeCurrentState(ELockState::Locked, bTransitImmediately);
-	}
-	else if (!IsValid(OtherActor))
+	if (!IsValid(OtherActor))
 	{
 		return false;
 	}
 
-	//TODO Implement key check here
 	return ChangeCurrentState(ELockState::Locked, bTransitImmediately);
 }
 
 bool ULockStateControllerComponent::Unlock_Implementation(AActor* OtherActor,
-                                                          const bool bIgnoreKey,
                                                           const bool bTransitImmediately)
 {
 	if (CurrentState != ELockState::Locked)
@@ -64,16 +58,11 @@ bool ULockStateControllerComponent::Unlock_Implementation(AActor* OtherActor,
 		return false;
 	}
 
-	if (bIgnoreKey)
-	{
-		return ChangeCurrentState(ELockState::Locked, bTransitImmediately);
-	}
-	else if (!IsValid(OtherActor))
+	if (!IsValid(OtherActor))
 	{
 		return false;
 	}
 
-	//TODO Implement key check here
 	return ChangeCurrentState(ELockState::Unlocked, bTransitImmediately);
 }
 
