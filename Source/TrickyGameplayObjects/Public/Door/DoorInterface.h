@@ -65,6 +65,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool OpenDoor(const bool bTransitImmediately);
 
+	virtual bool OpenDoor_Implementation(const bool bTransitImmediately);
+
 	/**
 	 * Attempts to close the door.
 	 *
@@ -73,6 +75,8 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool CloseDoor(const bool bTransitImmediately);
+
+	virtual bool CloseDoor_Implementation(const bool bTransitImmediately);
 
 	/**
 	 * Attempts to lock the door.
@@ -83,6 +87,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool LockDoor(const bool bTransitImmediately);
 
+	virtual bool LockDoor_Implementation(const bool bTransitImmediately);
+
 	/**
 	 * Attempts to unlock the door.
 	 *
@@ -91,6 +97,8 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool UnlockDoor(const bool bTransitImmediately);
+
+	virtual bool UnlockDoor_Implementation(const bool bTransitImmediately);
 
 	/**
 	 * Attempts to disable the door.
@@ -101,6 +109,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool DisableDoor(const bool bTransitImmediately);
 
+	virtual bool DisableDoor_Implementation(const bool bTransitImmediately);
+
 	/**
 	 * Attempts to enable the door.
 	 * 
@@ -109,6 +119,8 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
 	bool EnableDoor(const bool bTransitImmediately);
+
+	virtual bool EnableDoor_Implementation(const bool bTransitImmediately);
 
 	/**
 	 * Attempts to force the door to enter specific state.
@@ -120,4 +132,6 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category=Door)
 	bool ForceState(const EDoorState NewState, const bool bTransitImmediately);
+
+	virtual bool ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately);
 };
