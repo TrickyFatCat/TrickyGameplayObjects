@@ -55,15 +55,25 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
 	bool Lock(AActor* OtherActor, const bool bTransitImmediately);
 
+	virtual bool Lock_Implementation(AActor* OtherActor, const bool bTransitImmediately);
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
 	bool Unlock(AActor* OtherActor, const bool bTransitImmediately);
+
+	virtual bool Unlock_Implementation(AActor* OtherActor, const bool bTransitImmediately);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
 	bool Disable(const bool bTransitImmediately);
 
+	virtual bool Disable_Implementation(const bool bTransitImmediately);
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
 	bool Enable(const bool bTransitImmediately);
 
+	virtual bool Enable_Implementation(const bool bTransitImmediately);
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
 	bool ForceState(const ELockState NewState, const bool bTransitImmediately);
+
+	virtual bool ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately);
 };
