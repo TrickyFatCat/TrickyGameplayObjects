@@ -37,3 +37,13 @@ bool IDoorInterface::ForceState_Implementation(const EDoorState NewState, const 
 {
 	return false;
 }
+
+bool IDoorInterface::FinishStateTransition_Implementation()
+{
+	return false;
+}
+
+bool IDoorInterface::ReverseStateTransition_Implementation()
+{
+	return false;
+}

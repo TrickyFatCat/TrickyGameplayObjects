@@ -117,7 +117,7 @@ bool UDoorStateControllerComponent::ForceState_Implementation(const EDoorState N
 	return ChangeCurrentState(NewState, bTransitImmediately);
 }
 
-bool UDoorStateControllerComponent::FinishStateTransition()
+bool UDoorStateControllerComponent::FinishStateTransition_Implementation()
 {
 	if (CurrentState != EDoorState::Transition)
 	{
@@ -136,7 +136,7 @@ bool UDoorStateControllerComponent::FinishStateTransition()
 	return true;
 }
 
-bool UDoorStateControllerComponent::ReverseStateTransition()
+bool UDoorStateControllerComponent::ReverseStateTransition_Implementation()
 {
 	if (CurrentState == EDoorState::Transition)
 	{

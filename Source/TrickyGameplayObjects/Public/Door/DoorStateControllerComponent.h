@@ -76,23 +76,9 @@ public:
 
 	bool ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately) override;
 
-	/**
-	 * Completes the current door state transition if CurrentState is Transition.
-	 * Automatically sets CurrentState to TargetState
-	 *
-	 * @return True if the state transition is successfully completed, false otherwise.
-	 */
-	UFUNCTION(BlueprintCallable, Category=DoorState)
-	bool FinishStateTransition();
+	bool FinishStateTransition_Implementation() override;
 
-	/**
-	 * Reverses the current target state of the door with the last recorded state if CurrentState is Transition.
-	 * Effectively swapping TargetState and LastState.
-	 *
-	 * @return True if the target state is successfully reversed, false otherwise.
-	 */
-	UFUNCTION(BlueprintCallable, Category=DoorState)
-	bool ReverseStateTransition();
+	bool ReverseStateTransition_Implementation() override;
 
 private:
 	/**

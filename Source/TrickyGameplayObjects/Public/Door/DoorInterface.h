@@ -134,4 +134,26 @@ public:
 	bool ForceState(const EDoorState NewState, const bool bTransitImmediately);
 
 	virtual bool ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately);
+
+	/**
+	 * Completes the current door state transition.
+	 * @warning current state should be Transition.
+	 *
+	 * @return True if the state transition is successfully completed, false otherwise.
+	 */
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
+	bool FinishStateTransition();
+
+	virtual bool FinishStateTransition_Implementation();
+
+	/**
+	 * Reverses the current target state of the door with the last recorded state.
+	 * @warning  current state should be Transition.
+	 *
+	 * @return True if the target state is successfully reversed, false otherwise.
+	 */
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
+	bool ReverseStateTransition();
+
+	virtual bool ReverseStateTransition_Implementation();
 };
