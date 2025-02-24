@@ -86,6 +86,9 @@ public:
 	bool ReverseStateTransition_Implementation() override;
 
 private:
+	/**
+	 * Specifies the key type required to interact with the lock.
+	 */
 	UPROPERTY(EditInstanceOnly, BlueprintGetter=GetRequiredKey, BlueprintSetter=SetRequiredKey, Category=LockState)
 	TSubclassOf<ULockKeyType> RequiredKey = nullptr;
 	
