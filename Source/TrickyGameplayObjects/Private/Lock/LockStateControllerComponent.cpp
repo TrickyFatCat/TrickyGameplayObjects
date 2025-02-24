@@ -149,7 +149,7 @@ bool ULockStateControllerComponent::ChangeCurrentState(const ELockState NewState
 	return true;
 }
 
-bool ULockStateControllerComponent::TryUseKeyFromActor(AActor* OtherActor)
+bool ULockStateControllerComponent::TryUseKeyFromActor(const AActor* OtherActor)
 {
 	if (!IsValid(OtherActor) || !IsValid(RequiredKey))
 	{
