@@ -92,7 +92,7 @@ public:
 	 * @return True if the target state is successfully reversed, false otherwise.
 	 */
 	UFUNCTION(BlueprintCallable, Category=DoorState)
-	bool ReverseTransition();
+	bool ReverseStateTransition();
 
 private:
 	/**

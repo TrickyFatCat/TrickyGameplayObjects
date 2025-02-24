@@ -136,7 +136,7 @@ bool UDoorStateControllerComponent::FinishStateTransition()
 	return true;
 }
 
-bool UDoorStateControllerComponent::ReverseTransition()
+bool UDoorStateControllerComponent::ReverseStateTransition()
 {
 	if (CurrentState == EDoorState::Transition)
 	{
