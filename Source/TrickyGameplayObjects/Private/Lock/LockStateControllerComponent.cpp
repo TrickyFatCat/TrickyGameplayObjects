@@ -3,6 +3,8 @@
 
 #include "Lock/LockStateControllerComponent.h"
 #include "GameFramework/Actor.h"
+#include "LockKey/KeyRingInterface.h"
+#include "LockKey/LockKeyType.h"
 
 
 ULockStateControllerComponent::ULockStateControllerComponent()
@@ -21,6 +23,11 @@ void ULockStateControllerComponent::InitializeComponent()
 	}
 
 	CurrentState = InitialState;
+}
+
+void ULockStateControllerComponent::SetRequiredKey(const TSubclassOf<ULockKeyType>& NewKey)
+{
+	RequiredKey = NewKey;
 }
 
 void ULockStateControllerComponent::SetInitialState(const ELockState NewState)
@@ -42,11 +49,11 @@ bool ULockStateControllerComponent::Lock_Implementation(AActor* OtherActor,
 		return false;
 	}
 
-	if (!IsValid(OtherActor))
+	if (!TryUseKeyFromActor(OtherActor))
 	{
 		return false;
 	}
-
+	
 	return ChangeCurrentState(ELockState::Locked, bTransitImmediately);
 }
 
@@ -58,7 +65,7 @@ bool ULockStateControllerComponent::Unlock_Implementation(AActor* OtherActor,
 		return false;
 	}
 
-	if (!IsValid(OtherActor))
+	if (!TryUseKeyFromActor(OtherActor))
 	{
 		return false;
 	}
@@ -140,4 +147,21 @@ bool ULockStateControllerComponent::ChangeCurrentState(const ELockState NewState
 
 	OnLockStateChanged.Broadcast(this, CurrentState, bTransitImmediately);
 	return true;
+}
+
+bool ULockStateControllerComponent::TryUseKeyFromActor(AActor* OtherActor)
+{
+	if (!IsValid(OtherActor) || !IsValid(RequiredKey))
+	{
+		return false;
+	}
+	
+	IKeyRingInterface* KeyRingInterface = OtherActor->FindComponentByInterface<IKeyRingInterface>();
+
+	if (!KeyRingInterface)
+	{
+		return false;
+	}
+
+	return KeyRingInterface->Execute_UseLockKey(this, RequiredKey);
 }

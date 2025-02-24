@@ -8,6 +8,8 @@
 #include "LockStateControllerComponent.generated.h"
 
 
+class ULockKeyType;
+
 UCLASS(ClassGroup=(TrickyGameplayObjects), meta=(BlueprintSpawnableComponent))
 class TRICKYGAMEPLAYOBJECTS_API ULockStateControllerComponent : public UActorComponent, public ILockInterface
 {
@@ -31,6 +33,12 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnLockStateTransitionReversedDynamicSignature OnLockTransitionReversed;
+
+	UFUNCTION(BlueprintGetter, Category=LockState)
+	FORCEINLINE TSubclassOf<ULockKeyType> GetRequiredKey() const { return RequiredKey; }
+
+	UFUNCTION(BlueprintSetter, Category=LockState)
+	void SetRequiredKey(const TSubclassOf<ULockKeyType>& NewKey);
 	
 	UFUNCTION(BlueprintGetter, Category=LockState)
 	FORCEINLINE ELockState GetInitialState() const { return InitialState; }
@@ -47,15 +55,15 @@ public:
 	UFUNCTION(BlueprintGetter, Category=LockState)
 	FORCEINLINE ELockState GetLastState() const { return LastState; }
 
-	bool Lock_Implementation(AActor* OtherActor, const bool bTransitImmediately);
+	bool Lock_Implementation(AActor* OtherActor, const bool bTransitImmediately) override;
 
-	bool Unlock_Implementation(AActor* OtherActor, const bool bTransitImmediately);
+	bool Unlock_Implementation(AActor* OtherActor, const bool bTransitImmediately) override;
 
-	bool Disable_Implementation(const bool bTransitImmediately);
+	bool Disable_Implementation(const bool bTransitImmediately) override;
 
-	bool Enable_Implementation(const bool bTransitImmediately);
+	bool Enable_Implementation(const bool bTransitImmediately) override;
 
-	bool ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately);
+	bool ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately) override;
 
 	UFUNCTION(BlueprintCallable, Category=LockState)
 	bool FinishStateTransition();
@@ -64,6 +72,9 @@ public:
 	bool ReverseTransition();
 
 private:
+	UPROPERTY(EditInstanceOnly, BlueprintGetter=GetRequiredKey, BlueprintSetter=SetRequiredKey, Category=LockState)
+	TSubclassOf<ULockKeyType> RequiredKey = nullptr;
+	
 	UPROPERTY(EditAnywhere, BlueprintGetter=GetInitialState, BlueprintSetter=SetInitialState, Category=LockState)
 	ELockState InitialState = ELockState::Locked;
 
@@ -78,5 +89,8 @@ private:
 	
 	UFUNCTION()
 	bool ChangeCurrentState(const ELockState NewState, const bool bTransitImmediately);
+
+	UFUNCTION()
+	bool TryUseKeyFromActor(AActor* OtherActor);
 };
 
