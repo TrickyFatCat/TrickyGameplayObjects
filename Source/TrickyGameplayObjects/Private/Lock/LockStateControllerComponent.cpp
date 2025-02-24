@@ -94,7 +94,7 @@ bool ULockStateControllerComponent::ForceState_Implementation(const ELockState N
 	return true;
 }
 
-bool ULockStateControllerComponent::FinishStateTransition()
+bool ULockStateControllerComponent::FinishStateTransition_Implementation()
 {
 	if (CurrentState != ELockState::Transition)
 	{
@@ -110,7 +110,7 @@ bool ULockStateControllerComponent::FinishStateTransition()
 	return true;
 }
 
-bool ULockStateControllerComponent::ReverseTransition()
+bool ULockStateControllerComponent::ReverseStateTransition_Implementation()
 {
 	if (CurrentState != ELockState::Transition)
 	{

@@ -114,4 +114,26 @@ public:
 	bool ForceState(const ELockState NewState, const bool bTransitImmediately);
 
 	virtual bool ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately);
+
+	/**
+	 * Completes the current lock state transition.
+	 * @warning current state should be Transition.
+	 *
+	 * @return True if the state transition is successfully completed, false otherwise.
+	 */
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
+	bool FinishStateTransition();
+
+	virtual bool FinishStateTransition_Implementation();
+
+	/**
+	 * Reverses the current target state of the lock with the last recorded state.
+	 * @warning  current state should be Transition.
+	 *
+	 * @return True if the target state is successfully reversed, false otherwise.
+	 */
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
+	bool ReverseStateTransition();
+
+	virtual bool ReverseStateTransition_Implementation();
 };

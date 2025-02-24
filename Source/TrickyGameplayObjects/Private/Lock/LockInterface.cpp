@@ -29,3 +29,13 @@ bool ILockInterface::ForceState_Implementation(const ELockState NewState, const 
 {
 	return false;
 }
+
+bool ILockInterface::FinishStateTransition_Implementation()
+{
+	return false;
+}
+
+bool ILockInterface::ReverseStateTransition_Implementation()
+{
+	return false;
+}

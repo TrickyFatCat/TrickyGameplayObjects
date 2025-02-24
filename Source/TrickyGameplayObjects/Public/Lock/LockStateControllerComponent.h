@@ -65,11 +65,9 @@ public:
 
 	bool ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately) override;
 
-	UFUNCTION(BlueprintCallable, Category=LockState)
-	bool FinishStateTransition();
+	bool FinishStateTransition_Implementation() override;
 
-	UFUNCTION(BlueprintCallable, Category=LockState)
-	bool ReverseTransition();
+	bool ReverseStateTransition_Implementation() override;
 
 private:
 	UPROPERTY(EditInstanceOnly, BlueprintGetter=GetRequiredKey, BlueprintSetter=SetRequiredKey, Category=LockState)
