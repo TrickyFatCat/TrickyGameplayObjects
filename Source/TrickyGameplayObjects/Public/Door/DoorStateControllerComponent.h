@@ -62,19 +62,19 @@ public:
 	UFUNCTION(BlueprintSetter, Category=DoorState)
 	void SetInitialState(const EDoorState NewState);
 
-	bool OpenDoor_Implementation(const bool bTransitImmediately);
+	bool OpenDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool CloseDoor_Implementation(const bool bTransitImmediately);
+	bool CloseDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool LockDoor_Implementation(const bool bTransitImmediately);
+	bool LockDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool UnlockDoor_Implementation(const bool bTransitImmediately);
+	bool UnlockDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool DisableDoor_Implementation(const bool bTransitImmediately);
+	bool DisableDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool EnableDoor_Implementation(const bool bTransitImmediately);
+	bool EnableDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately);
+	bool ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately) override;
 
 	/**
 	 * Completes the current door state transition if CurrentState is Transition.
