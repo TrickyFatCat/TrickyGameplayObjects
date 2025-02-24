@@ -41,6 +41,11 @@ class TRICKYGAMEPLAYOBJECTS_API IKeyRingInterface
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
+	void GetAcquiredLockKeys(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const;
+
+	virtual void GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const;
+	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
 	bool AddLockKey(TSubclassOf<ULockKeyType> LockKeyType);
 
 	virtual bool AddLockKey_Implementation(TSubclassOf<ULockKeyType> LockKeyType);

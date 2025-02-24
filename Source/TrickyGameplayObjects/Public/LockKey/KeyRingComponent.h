@@ -32,8 +32,7 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnLockKeyUsedDynamicSignature OnLockKeyUsed;
 
-	UFUNCTION(BlueprintGetter, Category=KeyRing)
-	FORCEINLINE TArray<TSubclassOf<ULockKeyType>> GetAcquiredKeys() const { return AcquiredKeys; }
+	void GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const override;
 
 	bool AddLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) override;
 
@@ -46,6 +45,6 @@ public:
 	bool HasLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) const override;
 
 private:
-	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetAcquiredKeys, Category=KeyRing)
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=KeyRing, meta=(AllowPrivateAccess))
 	TArray<TSubclassOf<ULockKeyType>> AcquiredKeys;
 };

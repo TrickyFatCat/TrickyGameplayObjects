@@ -17,6 +17,11 @@ void UKeyRingComponent::InitializeComponent()
 	Super::InitializeComponent();
 }
 
+void UKeyRingComponent::GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const
+{
+	AcquiredLockKeys = AcquiredKeys;
+}
+
 bool UKeyRingComponent::AddLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
 {
 	if (HasLockKey(LockKey))

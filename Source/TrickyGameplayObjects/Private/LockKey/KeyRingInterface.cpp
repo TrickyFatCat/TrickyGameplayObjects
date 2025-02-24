@@ -6,6 +6,10 @@
 #include "LockKey/LockKeyType.h"
 
 
+void IKeyRingInterface::GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const
+{
+}
+
 bool IKeyRingInterface::AddLockKey_Implementation(TSubclassOf<ULockKeyType> LockKeyType)
 {
 	return IsValid(LockKeyType->StaticClass());
