@@ -40,31 +40,67 @@ class TRICKYGAMEPLAYOBJECTS_API IKeyRingInterface
 	GENERATED_BODY()
 
 public:
+	/**
+	 * Retrieves an array of acquired keys.
+	 *
+	 * @param AcquiredLockKeys Array of acquired keys.
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
 	void GetAcquiredLockKeys(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const;
 
 	virtual void GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const;
-	
+
+	/**
+	 * Adds the specified lock key type to the key ring.
+	 * @warning It's impossible to add several keys of one class.
+	 *
+	 * @param LockKeyType A lock key class to add.
+	 * @return True if the lock key was successfully added, false otherwise.
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
 	bool AddLockKey(TSubclassOf<ULockKeyType> LockKeyType);
 
 	virtual bool AddLockKey_Implementation(TSubclassOf<ULockKeyType> LockKeyType);
 
+	/**
+	 * Removes a specified lock key type from the key ring.
+	 *
+	 * @param LockKeyType A lock key class to remove.
+	 * @return True if the lock key was successfully added, false otherwise.
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
 	bool RemoveLockKey(TSubclassOf<ULockKeyType> LockKeyType);
 
 	virtual bool RemoveLockKey_Implementation(TSubclassOf<ULockKeyType> LockKeyType);
 
+	/**
+	 * Removes all lock keys currently stored in the key ring.
+	 * This method is intended to clear the entire key collection.
+	 *
+	 * @return True if all lock keys were successfully removed, false otherwise.
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
 	bool RemoveAllLockKeys();
 
 	virtual bool RemoveAllLockKeys_Implementation();
 
+	/**
+	 * Attempts to use a specified lock key type from the key ring.
+	 *
+	 * @param LockKeyType A lock key class to use.
+	 * @return True if the key was successfully used, false otherwise.
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
 	bool UseLockKey(TSubclassOf<ULockKeyType> LockKeyType);
 
 	virtual bool UseLockKey_Implementation(TSubclassOf<ULockKeyType> LockKeyType);
 
+	/**
+	 * Checks if the specified lock key type is present in the key ring.
+	 *
+	 * @param LockKeyType A lock key class to check.
+	 * @return True if the lock key type is present in the key ring, false otherwise.
+	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = KeyRing)
 	bool HasLockKey(TSubclassOf<ULockKeyType> LockKeyType) const;
 

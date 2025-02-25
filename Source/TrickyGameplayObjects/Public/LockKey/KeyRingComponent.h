@@ -7,7 +7,9 @@
 #include "Components/ActorComponent.h"
 #include "KeyRingComponent.generated.h"
 
-
+/**
+ * This component provides functionality to add, remove and sue LockKeys.
+ */
 UCLASS(ClassGroup=(TrickyGameplayObjcets), meta=(BlueprintSpawnableComponent))
 class TRICKYGAMEPLAYOBJECTS_API UKeyRingComponent : public UActorComponent, public IKeyRingInterface
 {
@@ -20,15 +22,27 @@ protected:
 	virtual void InitializeComponent() override;
 
 public:
+	/**
+	 * Triggered when a new lock key is successfully added to the key ring.
+	 */
 	UPROPERTY(BlueprintAssignable)
 	FOnLockKeyAddedDynamicSignature OnLockKeyAdded;
 
+	/**
+	 * Triggered whenever a lock key is removed from the key ring.
+	 */
 	UPROPERTY(BlueprintAssignable)
 	FOnLockKeyRemovedDynamicSignature OnLockKeyRemoved;
 
+	/**
+	 * Triggered when all lock keys have been removed from the key ring.
+	 */
 	UPROPERTY(BlueprintAssignable)
 	FOnAllLockKeysRemovedDynmaicSignature OnAllLockKeysRemoved;
 
+	/**
+	 * Triggered when lock key is successfully used from the key ring.
+	 */
 	UPROPERTY(BlueprintAssignable)
 	FOnLockKeyUsedDynamicSignature OnLockKeyUsed;
 
@@ -45,6 +59,9 @@ public:
 	bool HasLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) const override;
 
 private:
+	/**
+	 * Stores lock keys that have been acquired.
+	 */
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=KeyRing, meta=(AllowPrivateAccess))
 	TArray<TSubclassOf<ULockKeyType>> AcquiredKeys;
 };
