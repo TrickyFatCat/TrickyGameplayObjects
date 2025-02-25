@@ -19,7 +19,7 @@ void UDoorStateControllerComponent::InitializeComponent()
 	if (InitialState == EDoorState::Transition)
 	{
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
-		PrintWarning("InitialState can't be EDoorState::Transition. Reset it to EDoorState::Closed");
+		PrintWarning("InitialState can't be Transition. Reset it to Closed");
 #endif
 		InitialState = EDoorState::Closed;
 	}
@@ -32,7 +32,7 @@ void UDoorStateControllerComponent::SetInitialState(const EDoorState NewState)
 	if (NewState == EDoorState::Transition)
 	{
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
-		PrintWarning("InitialState can't be EDoorState::Transition. Didn't change the state.");
+		PrintWarning("InitialState can't be Transition. Didn't change the state.");
 #endif
 		return;
 	}
@@ -107,7 +107,7 @@ bool UDoorStateControllerComponent::EnableDoor_Implementation(const bool bTransi
 }
 
 bool UDoorStateControllerComponent::ForceState_Implementation(const EDoorState NewState,
-                                                                    const bool bTransitImmediately)
+                                                              const bool bTransitImmediately)
 {
 	if (CurrentState == NewState || NewState == EDoorState::Transition)
 	{
@@ -122,7 +122,7 @@ bool UDoorStateControllerComponent::FinishStateTransition_Implementation()
 	if (CurrentState != EDoorState::Transition)
 	{
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
-		PrintWarning("Can't finish transition, because CurrentState isn't EDoorState::Transition");
+		PrintWarning("Can't finish transition, because CurrentState isn't Transition");
 #endif
 		return false;
 	}
@@ -141,7 +141,7 @@ bool UDoorStateControllerComponent::ReverseStateTransition_Implementation()
 	if (CurrentState == EDoorState::Transition)
 	{
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
-		PrintWarning("Can't reverse transition, because CurrentState is EDoorState::Transition");
+		PrintWarning("Can't reverse transition, because CurrentState is Transition");
 #endif
 		return false;
 	}
@@ -176,7 +176,7 @@ bool UDoorStateControllerComponent::ChangeCurrentState(const EDoorState NewState
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
 		PrintWarning("Can't change CurrentState to Transition");
 #endif
-		
+
 		return false;
 	}
 
