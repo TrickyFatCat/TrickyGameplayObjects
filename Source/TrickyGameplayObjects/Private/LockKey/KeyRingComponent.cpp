@@ -2,6 +2,7 @@
 
 
 #include "LockKey/KeyRingComponent.h"
+#include "GameFramework/Actor.h"
 
 #include "LockKey/LockKeyType.h"
 
