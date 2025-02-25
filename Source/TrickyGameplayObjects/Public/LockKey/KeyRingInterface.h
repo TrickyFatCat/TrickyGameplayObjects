@@ -10,6 +10,8 @@
 class ULockKeyType;
 class UKeyRingComponent;
 
+DECLARE_LOG_CATEGORY_EXTERN(LogKeyRing, Log, All);
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockKeyAddedDynamicSignature,
                                              UKeyRingComponent*, Component,
                                              TSubclassOf<ULockKeyType>, LockKey);
@@ -33,7 +35,7 @@ class UKeyRingInterface : public UInterface
 };
 
 /**
- * 
+ * Interface for managing keyring functionality such as adding, removing and using lock keys.
  */
 class TRICKYGAMEPLAYOBJECTS_API IKeyRingInterface
 {

@@ -64,4 +64,8 @@ private:
 	 */
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=KeyRing, meta=(AllowPrivateAccess))
 	TArray<TSubclassOf<ULockKeyType>> AcquiredKeys;
+
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	void PrintLog(const FString& Message) const;
+#endif
 };
