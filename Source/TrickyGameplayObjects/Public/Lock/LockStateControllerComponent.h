@@ -55,13 +55,13 @@ public:
 
 	UFUNCTION(BlueprintSetter, Category=LockState)
 	void SetRequiredKey(const TSubclassOf<ULockKeyType>& NewKey);
-	
+
 	UFUNCTION(BlueprintGetter, Category=LockState)
 	FORCEINLINE ELockState GetInitialState() const { return InitialState; }
 
 	UFUNCTION(BlueprintSetter, Category=LockState)
 	void SetInitialState(const ELockState NewState);
-	
+
 	UFUNCTION(BlueprintGetter, Category=LockState)
 	FORCEINLINE ELockState GetCurrentState() const { return CurrentState; }
 
@@ -91,7 +91,7 @@ private:
 	 */
 	UPROPERTY(EditInstanceOnly, BlueprintGetter=GetRequiredKey, BlueprintSetter=SetRequiredKey, Category=LockState)
 	TSubclassOf<ULockKeyType> RequiredKey = nullptr;
-	
+
 	/**
 	 * Defines the initial state of the lock during the component's initialization.
 	 * It cannot be set to Transition.
@@ -116,7 +116,7 @@ private:
 	 */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetLastState, Category=LockState)
 	ELockState LastState = ELockState::Locked;
-	
+
 	/**
 	 * Changes the current state of the lock to the specified new state.
 	 * Handles the logic for both immediate and transitional state changes.
@@ -133,5 +133,12 @@ private:
 	 */
 	UFUNCTION()
 	bool TryUseKeyFromActor(const AActor* OtherActor);
-};
 
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	void PrintWarning(const FString& Message) const;
+
+	void PrintLog(const FString& Message) const;
+
+	static void GetStateName(FString& StateName, const ELockState State);
+#endif
+};
