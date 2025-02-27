@@ -62,23 +62,23 @@ public:
 	UFUNCTION(BlueprintSetter, Category=DoorState)
 	void SetInitialState(const EDoorState NewState);
 
-	bool OpenDoor_Implementation(const bool bTransitImmediately) override;
+	virtual bool OpenDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool CloseDoor_Implementation(const bool bTransitImmediately) override;
+	virtual bool CloseDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool LockDoor_Implementation(const bool bTransitImmediately) override;
+	virtual bool LockDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool UnlockDoor_Implementation(const bool bTransitImmediately) override;
+	virtual bool UnlockDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool DisableDoor_Implementation(const bool bTransitImmediately) override;
+	virtual bool DisableDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool EnableDoor_Implementation(const bool bTransitImmediately) override;
+	virtual bool EnableDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool ForceDoorState_Implementation(const EDoorState NewState, const bool bTransitImmediately) override;
+	virtual bool ForceDoorState_Implementation(const EDoorState NewState, const bool bTransitImmediately) override;
 
-	bool FinishDoorStateTransition_Implementation() override;
+	virtual bool FinishDoorStateTransition_Implementation() override;
 
-	bool ReverseDoorStateTransition_Implementation() override;
+	virtual bool ReverseDoorStateTransition_Implementation() override;
 
 private:
 	/**
