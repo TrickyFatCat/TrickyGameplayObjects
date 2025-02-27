@@ -146,7 +146,7 @@ bool UDoorStateControllerComponent::FinishStateTransition_Implementation()
 
 bool UDoorStateControllerComponent::ReverseStateTransition_Implementation()
 {
-	if (CurrentState == EDoorState::Transition)
+	if (CurrentState != EDoorState::Transition)
 	{
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
 		PrintWarning("Can't reverse transition, because CurrentState is Transition");
