@@ -46,17 +46,17 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnLockKeyUsedDynamicSignature OnLockKeyUsed;
 
-	void GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const override;
+	virtual void GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const override;
 
-	bool AddLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) override;
+	virtual bool AddLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) override;
 
-	bool RemoveLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) override;
+	virtual bool RemoveLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) override;
 
-	bool RemoveAllLockKeys_Implementation() override;
+	virtual bool RemoveAllLockKeys_Implementation() override;
 
-	bool UseLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) override;
+	virtual bool UseLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) override;
 
-	bool HasLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) const override;
+	virtual bool HasLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) const override;
 
 private:
 	/**
