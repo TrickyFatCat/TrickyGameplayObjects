@@ -109,8 +109,16 @@ bool UDoorStateControllerComponent::EnableDoor_Implementation(const bool bTransi
 bool UDoorStateControllerComponent::ForceState_Implementation(const EDoorState NewState,
                                                               const bool bTransitImmediately)
 {
-	if (CurrentState == NewState || NewState == EDoorState::Transition)
+	if (CurrentState == NewState)
 	{
+		return false;
+	}
+
+	if (NewState == EDoorState::Transition)
+	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't force state to Transition");
+#endif
 		return false;
 	}
 
