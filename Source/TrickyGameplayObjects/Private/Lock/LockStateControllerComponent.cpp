@@ -93,13 +93,31 @@ bool ULockStateControllerComponent::Disable_Implementation(const bool bTransitIm
 
 bool ULockStateControllerComponent::Enable_Implementation(const bool bTransitImmediately)
 {
-	return true;
+	if (CurrentState != ELockState::Disabled)
+	{
+		return false;
+	}
+
+	return ChangeCurrentState(LastState, bTransitImmediately);
 }
 
 bool ULockStateControllerComponent::ForceState_Implementation(const ELockState NewState,
                                                               const bool bTransitImmediately)
 {
-	return true;
+	if (CurrentState == NewState)
+	{
+		return false;
+	}
+
+	if (NewState == ELockState::Transition)
+	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't force state to Transition");
+#endif
+		return false;
+	}
+	
+	return ChangeCurrentState(NewState, bTransitImmediately);
 }
 
 bool ULockStateControllerComponent::FinishStateTransition_Implementation()
