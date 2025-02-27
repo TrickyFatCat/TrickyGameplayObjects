@@ -75,15 +75,15 @@ public:
 
 	bool Unlock_Implementation(AActor* OtherActor, const bool bTransitImmediately) override;
 
-	bool Disable_Implementation(const bool bTransitImmediately) override;
+	bool DisableLock_Implementation(const bool bTransitImmediately) override;
 
-	bool Enable_Implementation(const bool bTransitImmediately) override;
+	bool EnableLock_Implementation(const bool bTransitImmediately) override;
 
-	bool ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately) override;
+	bool ForceLockState_Implementation(const ELockState NewState, const bool bTransitImmediately) override;
 
-	bool FinishStateTransition_Implementation() override;
+	bool FinishLockStateTransition_Implementation() override;
 
-	bool ReverseStateTransition_Implementation() override;
+	bool ReverseLockStateTransition_Implementation() override;
 
 private:
 	/**

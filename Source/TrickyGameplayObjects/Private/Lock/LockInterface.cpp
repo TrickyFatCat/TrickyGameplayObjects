@@ -15,27 +15,27 @@ bool ILockInterface::Unlock_Implementation(AActor* OtherActor, const bool bTrans
 	return false;
 }
 
-bool ILockInterface::Disable_Implementation(const bool bTransitImmediately)
+bool ILockInterface::DisableLock_Implementation(const bool bTransitImmediately)
 {
 	return false;
 }
 
-bool ILockInterface::Enable_Implementation(const bool bTransitImmediately)
+bool ILockInterface::EnableLock_Implementation(const bool bTransitImmediately)
 {
 	return false;
 }
 
-bool ILockInterface::ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately)
+bool ILockInterface::ForceLockState_Implementation(const ELockState NewState, const bool bTransitImmediately)
 {
 	return false;
 }
 
-bool ILockInterface::FinishStateTransition_Implementation()
+bool ILockInterface::FinishLockStateTransition_Implementation()
 {
 	return false;
 }
 
-bool ILockInterface::ReverseStateTransition_Implementation()
+bool ILockInterface::ReverseLockStateTransition_Implementation()
 {
 	return false;
 }

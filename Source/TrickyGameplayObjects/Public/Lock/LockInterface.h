@@ -87,9 +87,9 @@ public:
 	 * @return Returns true if the lock was successfully disabled on started a transition to disabled state.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
-	bool Disable(const bool bTransitImmediately);
+	bool DisableLock(const bool bTransitImmediately);
 
-	virtual bool Disable_Implementation(const bool bTransitImmediately);
+	virtual bool DisableLock_Implementation(const bool bTransitImmediately);
 
 	/**
 	 * Attempts to enable a lock.
@@ -98,9 +98,9 @@ public:
 	 * @return  True if the lock was successfully enabled or started a transition from the enabled to last state before disabling.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
-	bool Enable(const bool bTransitImmediately);
+	bool EnableLock(const bool bTransitImmediately);
 
-	virtual bool Enable_Implementation(const bool bTransitImmediately);
+	virtual bool EnableLock_Implementation(const bool bTransitImmediately);
 
 	/**
 	 * Attempts to force a lock to enter specific state.
@@ -111,9 +111,9 @@ public:
 	 * @return True if the lock successfully changed the state or started a transition to NewState.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
-	bool ForceState(const ELockState NewState, const bool bTransitImmediately);
+	bool ForceLockState(const ELockState NewState, const bool bTransitImmediately);
 
-	virtual bool ForceState_Implementation(const ELockState NewState, const bool bTransitImmediately);
+	virtual bool ForceLockState_Implementation(const ELockState NewState, const bool bTransitImmediately);
 
 	/**
 	 * Completes the current lock state transition.
@@ -122,9 +122,9 @@ public:
 	 * @return True if the state transition is successfully completed, false otherwise.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
-	bool FinishStateTransition();
+	bool FinishLockStateTransition();
 
-	virtual bool FinishStateTransition_Implementation();
+	virtual bool FinishLockStateTransition_Implementation();
 
 	/**
 	 * Reverses the current target state of the lock with the last recorded state.
@@ -133,7 +133,7 @@ public:
 	 * @return True if the target state is successfully reversed, false otherwise.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Lock)
-	bool ReverseStateTransition();
+	bool ReverseLockStateTransition();
 
-	virtual bool ReverseStateTransition_Implementation();
+	virtual bool ReverseLockStateTransition_Implementation();
 };

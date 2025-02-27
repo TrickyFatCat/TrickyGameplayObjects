@@ -81,7 +81,7 @@ bool ULockStateControllerComponent::Unlock_Implementation(AActor* OtherActor,
 	return ChangeCurrentState(ELockState::Unlocked, bTransitImmediately);
 }
 
-bool ULockStateControllerComponent::Disable_Implementation(const bool bTransitImmediately)
+bool ULockStateControllerComponent::DisableLock_Implementation(const bool bTransitImmediately)
 {
 	if (CurrentState == ELockState::Disabled)
 	{
@@ -91,7 +91,7 @@ bool ULockStateControllerComponent::Disable_Implementation(const bool bTransitIm
 	return ChangeCurrentState(ELockState::Disabled, bTransitImmediately);
 }
 
-bool ULockStateControllerComponent::Enable_Implementation(const bool bTransitImmediately)
+bool ULockStateControllerComponent::EnableLock_Implementation(const bool bTransitImmediately)
 {
 	if (CurrentState != ELockState::Disabled)
 	{
@@ -101,7 +101,7 @@ bool ULockStateControllerComponent::Enable_Implementation(const bool bTransitImm
 	return ChangeCurrentState(LastState, bTransitImmediately);
 }
 
-bool ULockStateControllerComponent::ForceState_Implementation(const ELockState NewState,
+bool ULockStateControllerComponent::ForceLockState_Implementation(const ELockState NewState,
                                                               const bool bTransitImmediately)
 {
 	if (CurrentState == NewState)
@@ -120,7 +120,7 @@ bool ULockStateControllerComponent::ForceState_Implementation(const ELockState N
 	return ChangeCurrentState(NewState, bTransitImmediately);
 }
 
-bool ULockStateControllerComponent::FinishStateTransition_Implementation()
+bool ULockStateControllerComponent::FinishLockStateTransition_Implementation()
 {
 	if (CurrentState != ELockState::Transition)
 	{
@@ -139,7 +139,7 @@ bool ULockStateControllerComponent::FinishStateTransition_Implementation()
 	return true;
 }
 
-bool ULockStateControllerComponent::ReverseStateTransition_Implementation()
+bool ULockStateControllerComponent::ReverseLockStateTransition_Implementation()
 {
 	if (CurrentState != ELockState::Transition)
 	{
