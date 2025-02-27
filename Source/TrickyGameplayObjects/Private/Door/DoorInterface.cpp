@@ -33,17 +33,17 @@ bool IDoorInterface::EnableDoor_Implementation(const bool bTransitImmediately)
 	return false;
 }
 
-bool IDoorInterface::ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately)
+bool IDoorInterface::ForceDoorState_Implementation(const EDoorState NewState, const bool bTransitImmediately)
 {
 	return false;
 }
 
-bool IDoorInterface::FinishStateTransition_Implementation()
+bool IDoorInterface::FinishDoorStateTransition_Implementation()
 {
 	return false;
 }
 
-bool IDoorInterface::ReverseStateTransition_Implementation()
+bool IDoorInterface::ReverseDoorStateTransition_Implementation()
 {
 	return false;
 }

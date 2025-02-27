@@ -74,11 +74,11 @@ public:
 
 	bool EnableDoor_Implementation(const bool bTransitImmediately) override;
 
-	bool ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately) override;
+	bool ForceDoorState_Implementation(const EDoorState NewState, const bool bTransitImmediately) override;
 
-	bool FinishStateTransition_Implementation() override;
+	bool FinishDoorStateTransition_Implementation() override;
 
-	bool ReverseStateTransition_Implementation() override;
+	bool ReverseDoorStateTransition_Implementation() override;
 
 private:
 	/**

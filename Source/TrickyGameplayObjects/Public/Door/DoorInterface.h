@@ -131,9 +131,9 @@ public:
 	 * @return True if the door successfully changed the state or started a transition to NewState.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category=Door)
-	bool ForceState(const EDoorState NewState, const bool bTransitImmediately);
+	bool ForceDoorState(const EDoorState NewState, const bool bTransitImmediately);
 
-	virtual bool ForceState_Implementation(const EDoorState NewState, const bool bTransitImmediately);
+	virtual bool ForceDoorState_Implementation(const EDoorState NewState, const bool bTransitImmediately);
 
 	/**
 	 * Completes the current door state transition.
@@ -142,9 +142,9 @@ public:
 	 * @return True if the state transition is successfully completed, false otherwise.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
-	bool FinishStateTransition();
+	bool FinishDoorStateTransition();
 
-	virtual bool FinishStateTransition_Implementation();
+	virtual bool FinishDoorStateTransition_Implementation();
 
 	/**
 	 * Reverses the current target state of the door with the last recorded state.
@@ -153,7 +153,7 @@ public:
 	 * @return True if the target state is successfully reversed, false otherwise.
 	 */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = Door)
-	bool ReverseStateTransition();
+	bool ReverseDoorStateTransition();
 
-	virtual bool ReverseStateTransition_Implementation();
+	virtual bool ReverseDoorStateTransition_Implementation();
 };
