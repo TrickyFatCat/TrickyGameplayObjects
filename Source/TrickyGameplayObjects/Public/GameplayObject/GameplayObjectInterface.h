@@ -8,6 +8,8 @@
 
 class UGameplayObjectStateControllerComponent;
 
+DECLARE_LOG_CATEGORY_EXTERN(LogGameplayObject, Log, All);
+
 /**
  * Representing the various states a generic gameplay object can be in.
  */

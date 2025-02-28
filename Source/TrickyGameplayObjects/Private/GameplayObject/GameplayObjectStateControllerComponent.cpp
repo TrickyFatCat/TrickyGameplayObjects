@@ -3,6 +3,7 @@
 
 #include "GameplayObject/GameplayObjectStateControllerComponent.h"
 
+DEFINE_LOG_CATEGORY(LogGameplayObject)
 
 UGameplayObjectStateControllerComponent::UGameplayObjectStateControllerComponent()
 {
@@ -16,6 +17,9 @@ void UGameplayObjectStateControllerComponent::InitializeComponent()
 
 	if (InitialState == EGameplayObjectState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("InitialState can't be Transition. Reset it to Closed");
+#endif
 		InitialState = EGameplayObjectState::Active;
 	}
 
@@ -26,6 +30,9 @@ void UGameplayObjectStateControllerComponent::SetInitialState(const EGameplayObj
 {
 	if (NewState == EGameplayObjectState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("InitialState can't be Transition. Didn't change the state.");
+#endif
 		return;
 	}
 
@@ -88,6 +95,9 @@ bool UGameplayObjectStateControllerComponent::ForceGameplayObjectState_Implement
 
 	if (NewState == EGameplayObjectState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't force state to Transition");
+#endif
 		return false;
 	}
 
@@ -98,6 +108,9 @@ bool UGameplayObjectStateControllerComponent::FinishGameplayObjetStateTransition
 {
 	if (CurrentState != EGameplayObjectState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't finish transition, because CurrentState isn't Transition");
+#endif
 		return false;
 	}
 
@@ -108,12 +121,26 @@ bool UGameplayObjectStateControllerComponent::ReverseGameplayObjectStateTransiti
 {
 	if (CurrentState != EGameplayObjectState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't reverse transition, because CurrentState is Transition");
+#endif
 		return false;
 	}
 
 	const EGameplayObjectState NewTargetState = LastState;
 	LastState = TargetState;
 	TargetState = NewTargetState;
+	
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	FString TargetStateName = "NONE";
+	GetStateName(TargetStateName, TargetState);
+	FString LastStateName = "NONE";
+	GetStateName(LastStateName, LastState);
+	const FString LogMessage = FString::Printf(
+		TEXT("TargetState reversed from %s to %s"), *LastStateName, *TargetStateName);
+	PrintLog(LogMessage);
+#endif
+	
 	OnGameplayObjectStateTransitionReversed.Broadcast(this, TargetState);
 	return true;
 }
@@ -128,6 +155,10 @@ bool UGameplayObjectStateControllerComponent::ChangeCurrentState(const EGameplay
 
 	if (NewState == EGameplayObjectState::Transition)
 	{
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		PrintWarning("Can't change CurrentState to Transition");
+#endif
+		
 		return false;
 	}
 
@@ -141,9 +172,50 @@ bool UGameplayObjectStateControllerComponent::ChangeCurrentState(const EGameplay
 	else
 	{
 		CurrentState = EGameplayObjectState::Transition;
+
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+		FString TargetStateName = "NONE";
+		GetStateName(TargetStateName, TargetState);
+		FString LastStateName = "NONE";
+		GetStateName(LastStateName, LastState);
+		const FString LogMessage = FString::Printf(
+			TEXT("Start state transition from %s to %s"), *LastStateName, *TargetStateName);
+		PrintLog(LogMessage);
+#endif
+		
 		OnGameplayObjectStateTransitionStarted.Broadcast(this, TargetState);
 	}
 
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	FString StateName = "NONE";
+	GetStateName(StateName, CurrentState);
+	const FString LogMessage = FString::Printf(TEXT("State changed to %s"), *StateName);
+	PrintLog(LogMessage);
+#endif
+	
 	OnGameplayObjectStateChanged.Broadcast(this, CurrentState, bTransitImmediately);
 	return true;
 }
+
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+void UGameplayObjectStateControllerComponent::PrintWarning(const FString& Message) const
+{
+	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
+	                                              *GetName(),
+	                                              *GetOwner()->GetActorNameOrLabel());
+	UE_LOG(LogGameplayObject, Warning, TEXT("%s%s"), *SourceMessage, *Message);
+}
+
+void UGameplayObjectStateControllerComponent::PrintLog(const FString& Message) const
+{
+	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
+	                                              *GetName(),
+	                                              *GetOwner()->GetActorNameOrLabel());
+	UE_LOG(LogGameplayObject, Display, TEXT("%s%s"), *SourceMessage, *Message);
+}
+
+void UGameplayObjectStateControllerComponent::GetStateName(FString& StateName, const EGameplayObjectState State)
+{
+	StateName = StaticEnum<EGameplayObjectState>()->GetNameStringByValue(static_cast<int64>(State));
+}
+#endif

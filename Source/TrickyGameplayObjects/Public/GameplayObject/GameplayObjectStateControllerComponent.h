@@ -118,4 +118,12 @@ private:
 	 */
 	UFUNCTION()
 	bool ChangeCurrentState(const EGameplayObjectState NewState, const bool bTransitImmediately);
+	
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	void PrintWarning(const FString& Message) const;
+
+	void PrintLog(const FString& Message) const;
+
+	static void GetStateName(FString& StateName, const EGameplayObjectState State);
+#endif
 };
