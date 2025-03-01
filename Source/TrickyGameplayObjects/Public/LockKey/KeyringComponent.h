@@ -3,20 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "KeyRingInterface.h"
+#include "KeyringInterface.h"
 #include "Components/ActorComponent.h"
-#include "KeyRingComponent.generated.h"
+#include "KeyringComponent.generated.h"
 
 /**
  * This component provides functionality to add, remove and sue LockKeys.
  */
 UCLASS(ClassGroup=(TrickyGameplayObjcets), meta=(BlueprintSpawnableComponent))
-class TRICKYGAMEPLAYOBJECTS_API UKeyRingComponent : public UActorComponent, public IKeyRingInterface
+class TRICKYGAMEPLAYOBJECTS_API UKeyringComponent : public UActorComponent, public IKeyringInterface
 {
 	GENERATED_BODY()
 
 public:
-	UKeyRingComponent();
+	UKeyringComponent();
 
 protected:
 	virtual void InitializeComponent() override;

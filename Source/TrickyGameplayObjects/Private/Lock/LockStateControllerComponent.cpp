@@ -4,7 +4,7 @@
 #include "Lock/LockStateControllerComponent.h"
 
 #include "GameFramework/Actor.h"
-#include "LockKey/KeyRingInterface.h"
+#include "LockKey/KeyringInterface.h"
 #include "LockKey/LockKeyType.h"
 
 DEFINE_LOG_CATEGORY(LogLock);
@@ -224,7 +224,7 @@ bool ULockStateControllerComponent::TryUseKeyFromActor(const AActor* OtherActor)
 		return false;
 	}
 
-	IKeyRingInterface* KeyRingInterface = OtherActor->FindComponentByInterface<IKeyRingInterface>();
+	IKeyringInterface* KeyRingInterface = OtherActor->FindComponentByInterface<IKeyringInterface>();
 
 	if (!KeyRingInterface)
 	{

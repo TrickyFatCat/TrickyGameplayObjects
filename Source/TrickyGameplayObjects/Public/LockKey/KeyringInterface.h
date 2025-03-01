@@ -5,31 +5,31 @@
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
 #include "Templates/SubclassOf.h"
-#include "KeyRingInterface.generated.h"
+#include "KeyringInterface.generated.h"
 
 class ULockKeyType;
-class UKeyRingComponent;
+class UKeyringComponent;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogKeyRing, Log, All);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockKeyAddedDynamicSignature,
-                                             UKeyRingComponent*, Component,
+                                             UKeyringComponent*, Component,
                                              TSubclassOf<ULockKeyType>, LockKey);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockKeyRemovedDynamicSignature,
-                                             UKeyRingComponent*, Component,
+                                             UKeyringComponent*, Component,
                                              TSubclassOf<ULockKeyType>, LockKey);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAllLockKeysRemovedDynmaicSignature,
-                                            UKeyRingComponent*, Component);
+                                            UKeyringComponent*, Component);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockKeyUsedDynamicSignature,
-                                             UKeyRingComponent*, Component,
+                                             UKeyringComponent*, Component,
                                              TSubclassOf<ULockKeyType>, LockKey);
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI, Blueprintable)
-class UKeyRingInterface : public UInterface
+class UKeyringInterface : public UInterface
 {
 	GENERATED_BODY()
 };
@@ -37,7 +37,7 @@ class UKeyRingInterface : public UInterface
 /**
  * Interface for managing keyring functionality such as adding, removing and using lock keys.
  */
-class TRICKYGAMEPLAYOBJECTS_API IKeyRingInterface
+class TRICKYGAMEPLAYOBJECTS_API IKeyringInterface
 {
 	GENERATED_BODY()
 

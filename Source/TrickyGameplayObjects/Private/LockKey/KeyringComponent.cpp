@@ -1,30 +1,30 @@
 ﻿// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 
-#include "LockKey/KeyRingComponent.h"
+#include "LockKey/KeyringComponent.h"
 #include "GameFramework/Actor.h"
 
 #include "LockKey/LockKeyType.h"
 
 DEFINE_LOG_CATEGORY(LogKeyRing);
 
-UKeyRingComponent::UKeyRingComponent()
+UKeyringComponent::UKeyringComponent()
 {
 	PrimaryComponentTick.bCanEverTick = false;
 	bWantsInitializeComponent = true;
 }
 
-void UKeyRingComponent::InitializeComponent()
+void UKeyringComponent::InitializeComponent()
 {
 	Super::InitializeComponent();
 }
 
-void UKeyRingComponent::GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const
+void UKeyringComponent::GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<ULockKeyType>>& AcquiredLockKeys) const
 {
 	AcquiredLockKeys = AcquiredKeys;
 }
 
-bool UKeyRingComponent::AddLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
+bool UKeyringComponent::AddLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
 {
 	if (HasLockKey(LockKey))
 	{
@@ -47,7 +47,7 @@ bool UKeyRingComponent::AddLockKey_Implementation(const TSubclassOf<ULockKeyType
 	return true;
 }
 
-bool UKeyRingComponent::RemoveLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
+bool UKeyringComponent::RemoveLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
 {
 	if (!HasLockKey(LockKey))
 	{
@@ -70,7 +70,7 @@ bool UKeyRingComponent::RemoveLockKey_Implementation(const TSubclassOf<ULockKeyT
 	return true;
 }
 
-bool UKeyRingComponent::RemoveAllLockKeys_Implementation()
+bool UKeyringComponent::RemoveAllLockKeys_Implementation()
 {
 	if (AcquiredKeys.IsEmpty())
 	{
@@ -87,7 +87,7 @@ bool UKeyRingComponent::RemoveAllLockKeys_Implementation()
 	return true;
 }
 
-bool UKeyRingComponent::UseLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
+bool UKeyringComponent::UseLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
 {
 	if (!HasLockKey(LockKey))
 	{
@@ -103,13 +103,13 @@ bool UKeyRingComponent::UseLockKey_Implementation(const TSubclassOf<ULockKeyType
 	return true;
 }
 
-bool UKeyRingComponent::HasLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) const
+bool UKeyringComponent::HasLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey) const
 {
 	return IsValid(LockKey) && !AcquiredKeys.IsEmpty() && AcquiredKeys.Contains(LockKey);
 }
 
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
-void UKeyRingComponent::PrintLog(const FString& Message) const
+void UKeyringComponent::PrintLog(const FString& Message) const
 {
 	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
 	                                              *GetName(),
