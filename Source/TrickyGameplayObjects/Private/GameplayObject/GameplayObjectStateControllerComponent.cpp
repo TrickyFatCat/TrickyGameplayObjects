@@ -2,6 +2,7 @@
 
 
 #include "GameplayObject/GameplayObjectStateControllerComponent.h"
+#include "GameFramework/Actor.h"
 
 DEFINE_LOG_CATEGORY(LogGameplayObject)
 
