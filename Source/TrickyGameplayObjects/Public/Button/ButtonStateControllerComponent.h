@@ -102,7 +102,7 @@ private:
 	 */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetLastState, Category=ButtonState)
 	EButtonState LastState = EButtonState::Released;
-	
+
 	/**
 	 * Changes the current state of the button to the specified new state.
 	 * Handles the logic for both immediate and transitional state changes.
@@ -113,4 +113,12 @@ private:
 	 */
 	UFUNCTION()
 	bool ChangeCurrentState(const EButtonState NewState, const bool bTransitImmediately);
+
+#if WITH_EDITOR || !UE_BUILD_SHIPPING
+	void PrintWarning(const FString& Message) const;
+
+	void PrintLog(const FString& Message) const;
+
+	static void GetStateName(FString& StateName, const EButtonState State);
+#endif
 };
