@@ -234,9 +234,10 @@ void UChestStateControllerComponent::PrintWarning(const FString& Message) const
 
 void UChestStateControllerComponent::PrintLog(const FString& Message) const
 {
+	const FString OwnerName = GetOwner() ? GetOwner()->GetActorNameOrLabel() : "NONE";
 	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
 	                                              *GetName(),
-	                                              *GetOwner()->GetActorNameOrLabel());
+	                                              *OwnerName);
 	UE_LOG(LogChest, Display, TEXT("%s%s"), *SourceMessage, *Message);
 }
 

@@ -209,9 +209,10 @@ void UGameplayObjectStateControllerComponent::PrintWarning(const FString& Messag
 
 void UGameplayObjectStateControllerComponent::PrintLog(const FString& Message) const
 {
+	const FString OwnerName = GetOwner() ? GetOwner()->GetActorNameOrLabel() : "NONE";
 	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
 	                                              *GetName(),
-	                                              *GetOwner()->GetActorNameOrLabel());
+	                                              *OwnerName);
 	UE_LOG(LogGameplayObject, Display, TEXT("%s%s"), *SourceMessage, *Message);
 }
 

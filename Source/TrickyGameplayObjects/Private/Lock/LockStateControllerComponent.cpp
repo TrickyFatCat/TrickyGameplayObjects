@@ -245,9 +245,10 @@ void ULockStateControllerComponent::PrintWarning(const FString& Message) const
 
 void ULockStateControllerComponent::PrintLog(const FString& Message) const
 {
+	const FString OwnerName = GetOwner() ? GetOwner()->GetActorNameOrLabel() : "NONE";
 	const FString SourceMessage = FString::Printf(TEXT("Component: %s | Owner: %s | "),
 	                                              *GetName(),
-	                                              *GetOwner()->GetActorNameOrLabel());
+	                                              *OwnerName);
 	UE_LOG(LogLock, Display, TEXT("%s%s"), *SourceMessage, *Message);
 }
 
