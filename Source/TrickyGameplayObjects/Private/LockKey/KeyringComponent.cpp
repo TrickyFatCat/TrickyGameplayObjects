@@ -26,7 +26,7 @@ void UKeyringComponent::GetAcquiredLockKeys_Implementation(TArray<TSubclassOf<UL
 
 bool UKeyringComponent::AddLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
 {
-	if (HasLockKey(LockKey))
+	if (Execute_HasLockKey(this, LockKey))
 	{
 		return false;
 	}
@@ -49,7 +49,7 @@ bool UKeyringComponent::AddLockKey_Implementation(const TSubclassOf<ULockKeyType
 
 bool UKeyringComponent::RemoveLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
 {
-	if (!HasLockKey(LockKey))
+	if (!Execute_HasLockKey(this, LockKey))
 	{
 		return false;
 	}
@@ -89,7 +89,7 @@ bool UKeyringComponent::RemoveAllLockKeys_Implementation()
 
 bool UKeyringComponent::UseLockKey_Implementation(const TSubclassOf<ULockKeyType> LockKey)
 {
-	if (!HasLockKey(LockKey))
+	if (!Execute_HasLockKey(this, LockKey))
 	{
 		return false;
 	}

@@ -4,6 +4,7 @@
 #include "Lock/LockStateControllerComponent.h"
 
 #include "GameFramework/Actor.h"
+#include "LockKey/KeyringComponent.h"
 #include "LockKey/KeyringInterface.h"
 #include "LockKey/LockKeyType.h"
 
@@ -224,14 +225,14 @@ bool ULockStateControllerComponent::TryUseKeyFromActor(const AActor* OtherActor)
 		return false;
 	}
 
-	IKeyringInterface* KeyRingInterface = OtherActor->FindComponentByInterface<IKeyringInterface>();
-
-	if (!KeyRingInterface)
+	UKeyringComponent* KeyringComponent = OtherActor->FindComponentByClass<UKeyringComponent>();
+	
+	if (!IsValid(KeyringComponent))
 	{
 		return false;
 	}
 
-	return KeyRingInterface->Execute_UseLockKey(this, RequiredKey);
+	return IKeyringInterface::Execute_UseLockKey(KeyringComponent, RequiredKey);
 }
 
 #if WITH_EDITOR || !UE_BUILD_SHIPPING
