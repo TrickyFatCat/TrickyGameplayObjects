@@ -20,7 +20,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockKeyRemovedDynamicSignature,
                                              UKeyringComponent*, Component,
                                              TSubclassOf<ULockKeyType>, LockKey);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAllLockKeysRemovedDynmaicSignature,
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAllLockKeysRemovedDynamicSignature,
                                             UKeyringComponent*, Component);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLockKeyUsedDynamicSignature,

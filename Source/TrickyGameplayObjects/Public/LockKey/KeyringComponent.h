@@ -38,7 +38,7 @@ public:
 	 * Triggered when all lock keys have been removed from the key ring.
 	 */
 	UPROPERTY(BlueprintAssignable)
-	FOnAllLockKeysRemovedDynmaicSignature OnAllLockKeysRemoved;
+	FOnAllLockKeysRemovedDynamicSignature OnAllLockKeysRemoved;
 
 	/**
 	 * Triggered when lock key is successfully used from the key ring.
