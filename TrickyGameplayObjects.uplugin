@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
-	"Version": 3,
-	"VersionName": "3.55.1",
+	"Version": 4,
+	"VersionName": "3.55.2",
 	"FriendlyName": "TrickyGameplayObjects",
 	"Description": "Provides reusable components and interfaces for managing common gameplay mechanics such as doors, chests, locks, buttons, and more.",
 	"Category": "Tricky Prototyping",
