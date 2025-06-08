@@ -8,6 +8,8 @@
 
 class USphereComponent;
 
+DECLARE_LOG_CATEGORY_EXTERN(LogPickup, Log, All)
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPickupActivatedDyanmicSignature,
                                              APickupBase*, Pickup,
                                              AActor*, Activator);
@@ -90,4 +92,14 @@ private:
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintGetter=GetDestroyAfterActivation, Category="Pickup")
 	bool bDestroyAfterActivation = true;
+
+#if WITH_EDITOR && !UE_BUILD_SHIPPING
+	static void PrintLog(const FString& Message);
+
+	static void PrintWarning(const FString& Message);
+
+	static void PrintError(const FString& Message);
+
+	static void GetActorName(const AActor* Actor, FString& OutActorName);
+#endif
 };
