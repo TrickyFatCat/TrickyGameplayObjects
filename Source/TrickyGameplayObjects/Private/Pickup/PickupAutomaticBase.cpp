@@ -12,7 +12,9 @@ APickupAutomaticBase::APickupAutomaticBase()
 
 	ActivationTrigger = CreateDefaultSubobject<USphereComponent>(TEXT("ActivationTrigger"));
 	ActivationTrigger->SetupAttachment(GetRootComponent());
-	ActivationTrigger->SetCollisionProfileName(TEXT("Trigger"));
+	ActivationTrigger->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	ActivationTrigger->SetCollisionResponseToAllChannels(ECR_Ignore);
+	ActivationTrigger->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 }
 
 void APickupAutomaticBase::PostInitializeComponents()
