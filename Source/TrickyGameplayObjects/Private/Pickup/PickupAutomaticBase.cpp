@@ -3,6 +3,7 @@
 
 #include "Pickup/PickupAutomaticBase.h"
 
+#include "Engine/World.h"
 #include "Components/SphereComponent.h"
 
 
