@@ -473,3 +473,47 @@ All components have a number of properties, functions and delegates which can be
 4. **`OnLockKeyUsed`**
    - Triggered when a lock key is successfully used by the component.
    - Parameters: `Component`, `LockKey`.  
+
+### PickupBase
+
+PickupBase class contains the core logic for pickups.
+
+#### Properties:
+
+1. **`bDestroyAfterActivation`**
+   - Determines if the actor will be destroyed after successful activation.
+   - Defaults to `true`.
+
+#### Functions:
+
+1. **`ActivatePickup`**  
+   Attempts to activate the pickup with the specified activator.
+   - `Activator`: The actor attempting to activate the pickup.
+   - Returns `true` if the pickup was successfully activated.
+
+2. **`CanBeActivated`**  
+   Determines if the pickup can be activated by the specified actor.
+   - `Activator`: The actor attempting to activate the pickup.
+   - Returns `true` if the pickup can be activated.
+   - Can be overridden in Blueprint classes.
+
+3. **`HandleActivationSuccess`**  
+   Handles the logic to be executed when the pickup is successfully activated.
+   - `Activator`: The actor attempting to activate the pickup.
+   - Can be overridden in Blueprint classes.
+
+4. **`HandleActivationFailure`**  
+   Handles the logic to be executed when the activation of the pickup fails.
+   - `Activator`: The actor attempting to activate the pickup.
+   - Can be overridden in Blueprint classes.
+
+#### Delegates:
+
+1. **`OnPickupActivated`**  
+   Called when the pickup actor was successfully activated.
+   - Parameters: `Pickup`, `Activator`.
+
+### Pickup Automatic Base
+
+Inherits from PickupBase and represents a pickup actor which activates its logic automatically on activation trigger
+overlap.
