@@ -6,6 +6,9 @@
 #include "PickupBase.h"
 #include "PickupAutomaticBase.generated.h"
 
+/**
+ * Represents a pickup actor which activates its logic automatically on activation trigger overlap
+ */
 UCLASS(Blueprintable, BlueprintType, Abstract)
 class TRICKYGAMEPLAYOBJECTS_API APickupAutomaticBase : public APickupBase
 {

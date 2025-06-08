@@ -16,17 +16,17 @@ void APickupBase::BeginDestroy()
 	Super::BeginDestroy();
 }
 
-void APickupBase::ActivatePickup(AActor* Activator)
+bool APickupBase::ActivatePickup(AActor* Activator)
 {
 	if (!IsValid(Activator))
 	{
-		return;
+		return false;
 	}
 
 	if (!CanBeActivated(Activator))
 	{
 		HandleActivationFailure(Activator);
-		return;
+		return false;
 	}
 
 	HandleActivationSuccess(Activator);
@@ -36,4 +36,6 @@ void APickupBase::ActivatePickup(AActor* Activator)
 	{
 		Destroy();
 	}
+
+	return true;
 }

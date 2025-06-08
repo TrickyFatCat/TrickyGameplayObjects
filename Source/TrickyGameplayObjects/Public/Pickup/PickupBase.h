@@ -13,7 +13,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPickupActivatedDyanmicSignature,
                                              AActor*, Activator);
 
 /**
- * 
+ * Represents a generic pickup actor which has the basic logic needed by any pickup.
  */
 UCLASS(Abstract, Blueprintable, BlueprintType)
 class TRICKYGAMEPLAYOBJECTS_API APickupBase : public AActor
@@ -27,6 +27,9 @@ protected:
 	virtual void BeginDestroy() override;
 
 public:
+	/**
+	 * Called when the pickup actor was successfully activated.
+	 */
 	UPROPERTY(BlueprintAssignable, Category="Pickup")
 	FOnPickupActivatedDyanmicSignature OnPickupActivated;
 
@@ -34,9 +37,21 @@ public:
 	bool GetDestroyAfterActivation() const { return bDestroyAfterActivation; }
 
 protected:
+	/**
+	 * Attempts to activate the pickup with the specified activator
+	 *
+	 * @param Activator The actor attempting to activate the pickup
+	 * @return True if the pickup was successfully activated
+	 */
 	UFUNCTION(BlueprintCallable, Category="Pickup")
-	void ActivatePickup(AActor* Activator);
-	
+	bool ActivatePickup(AActor* Activator);
+
+	/**
+	 * Determines if the pickup can be activated by the specified actor
+	 *
+	 * @param Activator The actor attempting to activate the pickup
+	 * @return True if the pickup can be activated
+	 */
 	UFUNCTION(BlueprintNativeEvent, Category="Pickup")
 	bool CanBeActivated(AActor* Activator);
 
@@ -45,6 +60,11 @@ protected:
 		return true;
 	}
 
+	/**
+	 * Handles the logic to be executed when the pickup is successfully activated.
+	 *
+	 * @param Activator The actor attempting to activate the pickup
+	 */
 	UFUNCTION(BlueprintNativeEvent, Category="Pickup")
 	void HandleActivationSuccess(AActor* Activator);
 
@@ -52,6 +72,11 @@ protected:
 	{
 	}
 
+	/**
+	 * Handles the logic to be executed when the activation of the pickup fails
+	 *
+	 * @param Activator The actor that attempted to activate the pickup
+	 */
 	UFUNCTION(BlueprintNativeEvent, Category="Pickup")
 	void HandleActivationFailure(AActor* Activator);
 
@@ -60,6 +85,9 @@ protected:
 	}
 
 private:
+	/**
+	 * Determines if the actor will be destroyed after successful activation
+	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintGetter=GetDestroyAfterActivation, Category="Pickup")
 	bool bDestroyAfterActivation = true;
 };
