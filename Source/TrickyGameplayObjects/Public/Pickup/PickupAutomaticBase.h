@@ -9,7 +9,7 @@
 /**
  * Represents a pickup actor which activates its logic automatically on activation trigger overlap
  */
-UCLASS(Blueprintable, BlueprintType, Abstract)
+UCLASS(Blueprintable, BlueprintType)
 class TRICKYGAMEPLAYOBJECTS_API APickupAutomaticBase : public APickupBase
 {
 	GENERATED_BODY()

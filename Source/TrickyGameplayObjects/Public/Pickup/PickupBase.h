@@ -17,7 +17,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPickupActivatedDyanmicSignature,
 /**
  * Represents a generic pickup actor which has the basic logic needed by any pickup.
  */
-UCLASS(Abstract, Blueprintable, BlueprintType)
+UCLASS(Blueprintable, BlueprintType)
 class TRICKYGAMEPLAYOBJECTS_API APickupBase : public AActor
 {
 	GENERATED_BODY()
