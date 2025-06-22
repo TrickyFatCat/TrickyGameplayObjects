@@ -39,6 +39,8 @@ public:
 	bool GetDestroyAfterActivation() const { return bDestroyAfterActivation; }
 
 protected:
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category="Component")
+	USceneComponent* Root = nullptr;
 	/**
 	 * Attempts to activate the pickup with the specified activator
 	 *

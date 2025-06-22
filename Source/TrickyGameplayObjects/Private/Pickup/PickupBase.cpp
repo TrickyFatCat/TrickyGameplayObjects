@@ -8,6 +8,9 @@ DEFINE_LOG_CATEGORY(LogPickup)
 APickupBase::APickupBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	SetRootComponent(Root);
 }
 
 void APickupBase::BeginDestroy()
