@@ -82,7 +82,11 @@ private:
 	 * Defines the initial state of the button during the component's initialization.
 	 * It cannot be set to Transition.
 	 */
-	UPROPERTY(EditAnywhere, BlueprintGetter=GetInitialState, BlueprintSetter=SetInitialState, Category=ButtonState)
+	UPROPERTY(EditAnywhere,
+		BlueprintGetter=GetInitialState,
+		BlueprintSetter=SetInitialState,
+		Category=ButtonState,
+		meta=(InvalidEnumValues="EButtonState::Transition"))
 	EButtonState InitialState = EButtonState::Released;
 
 	/**

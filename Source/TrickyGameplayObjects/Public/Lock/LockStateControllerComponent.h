@@ -96,7 +96,11 @@ private:
 	 * Defines the initial state of the lock during the component's initialization.
 	 * It cannot be set to Transition.
 	 */
-	UPROPERTY(EditAnywhere, BlueprintGetter=GetInitialState, BlueprintSetter=SetInitialState, Category=LockState)
+	UPROPERTY(EditAnywhere,
+		BlueprintGetter=GetInitialState,
+		BlueprintSetter=SetInitialState,
+		Category=LockState,
+		meta=(InvalidEnumValues="ELockState::Transition"))
 	ELockState InitialState = ELockState::Locked;
 
 	/**

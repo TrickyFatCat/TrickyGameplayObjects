@@ -82,7 +82,11 @@ private:
 	 * Defines the initial state of the chest during the component's initialization.
 	 * It cannot be set to Transition.
 	 */
-	UPROPERTY(EditAnywhere, BlueprintGetter=GetInitialState, BlueprintSetter=SetInitialState, Category=ChestState)
+	UPROPERTY(EditAnywhere,
+		BlueprintGetter=GetInitialState,
+		BlueprintSetter=SetInitialState,
+		Category=ChestState,
+		meta=(InvalidEnumValues="EChestState::Transition"))
 	EChestState InitialState = EChestState::Closed;
 
 	/**

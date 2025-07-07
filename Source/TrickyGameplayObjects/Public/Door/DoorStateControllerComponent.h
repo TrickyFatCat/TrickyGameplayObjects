@@ -85,7 +85,11 @@ private:
 	 * Defines the initial state of the door during the component's initialization.
 	 * It cannot be set to Transition.
 	 */
-	UPROPERTY(EditAnywhere, BlueprintGetter=GetInitialState, BlueprintSetter=SetInitialState, Category=DoorState)
+	UPROPERTY(EditAnywhere,
+		BlueprintGetter=GetInitialState,
+		BlueprintSetter=SetInitialState,
+		Category=DoorState,
+		meta=(InvalidEnumValues="EDoorState::Transition"))
 	EDoorState InitialState = EDoorState::Closed;
 
 	/**

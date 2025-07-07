@@ -87,7 +87,8 @@ private:
 	UPROPERTY(EditAnywhere,
 		BlueprintGetter=GetInitialState,
 		BlueprintSetter=SetInitialState,
-		Category=GameplayObjectState)
+		Category=GameplayObjectState,
+		meta=(InvalidEnumValues="EGameplayObjectState::Transition"))
 	EGameplayObjectState InitialState = EGameplayObjectState::Active;
 
 	/**
