@@ -9,7 +9,7 @@
 /**
  * A key type which is used to lock and unlock locks.
  */
-UCLASS(Blueprintable, BlueprintType)
+UCLASS(Blueprintable, BlueprintType, Const)
 class TRICKYGAMEPLAYOBJECTS_API ULockKeyType : public UObject
 {
 	GENERATED_BODY()
